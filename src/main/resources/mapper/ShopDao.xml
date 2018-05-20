@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuli.campusshops.dao.ShopDao">
+    <!--<select id="queryShop" resultType="com.jiuli.campusshops.entity.Shop">-->
+    <!--SELECT  id,name,priority,createAt,updateAt FROM tb_shop ORDER BY priority DESC-->
+    <!--</select>-->
+    <insert id="insertShop" parameterType="com.jiuli.campusshops.entity.Shop" useGeneratedKeys="true" keyColumn="id"
+            keyProperty="id">
+        INSERT  INTO
+        tb_shop(userOwnerId,
+        areaId,
+        shopCategoryId,
+        name,
+        shopDesc,
+        address,
+        telNumber,
+        image,
+        priority,
+        createAt,
+        updateAt,
+        status,
+        advice)VALUES(
+        #{userOwner.id},
+        #{area.id},
+        #{shopCategory.id},
+        #{name},
+        #{shopDesc},
+        #{address},
+        #{telNumber},
+        #{image},
+        #{priority},
+        #{createAt},
+        #{updateAt},
+        #{status},
+        #{advice})
+    </insert>
+    <update id="updateShop" parameterType="com.jiuli.campusshops.entity.Shop">
+        UPDATE tb_shop
+        <set>
+            <if test="name!=null">name=#{name},</if>
+            <if test="shopDesc!=null">shopDesc=#{shopDesc},</if>
+            <if test="address!=null">address=#{address},</if>
+            <if test="telNumber!=null">telNumber=#{telNumber},</if>
+            <if test="image!=null">image=#{image},</if>
+            <if test="priority!=null">priority=#{priority},</if>
+            <if test="updateAt!=null">updateAt=#{updateAt},</if>
+            <if test="status!=null">status=#{status},</if>
+            <if test="advice!=null">advice=#{advice},</if>
+            <if test="shopCategory!=null">shopCategoryId=#{shopCategory.id},</if>
+            <if test="area!=null">areaId=#{area.id}</if>
+        </set>
+        WHERE id = #{id};
+    </update>
+</mapper>
