@@ -65,6 +65,7 @@ public class ShopManagementController {
         if (shop == null || image == null) {
             modelMap.put("success", false);
             modelMap.put("error", "请检查店铺信息!");
+            return modelMap;
         }
         //TODO
         User owner = new User();
@@ -76,7 +77,7 @@ public class ShopManagementController {
             modelMap.put("success", true);
         } else {
             modelMap.put("success", false);
-            modelMap.put("error: ", se.getStateInfo());
+            modelMap.put("error: ", se != null ? se.getStateInfo() : "未知错误!!");
         }
 
         return modelMap;
